@@ -1395,6 +1395,12 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
     self.view = snapshot;
     [superView addSubview:snapshot];
   }
+
+  if (self.navigationItem.titleView.window != nil) {
+    UIView *navSnapshot = [self.navigationItem.titleView snapshotViewAfterScreenUpdates:NO];
+    [self.navigationItem.titleView removeFromSuperview];
+    self.navigationItem.titleView = navSnapshot;
+  }
 }
 
 #else
